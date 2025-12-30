@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Dashboard - Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0d6efd;
+            --medical-green: #28a745;
+            --medical-blue: #007bff;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            background: linear-gradient(135deg, #6e8bb8 0%, #4d6da1 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: none;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card.patients {
+            border-top: 5px solid var(--medical-green);
+        }
+
+        .stat-card.doctors {
+            border-top: 5px solid var(--medical-blue);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #1a1919, #0d0d0e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            opacity: 0.1;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .dashboard-welcome {
+            background: var(--gradient);
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#">
+                <i class="fas fa-hospital me-2 text-primary"></i>
+                Hospital Management
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('home')}}"><i class="fas fa-tachometer-alt me-1"></i>
+                            Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('patient_details')}}"><i
+                                class="fas fa-user-injured me-1"></i> Patients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('doctor_details')}}"><i class="fas fa-user-md me-1"></i>
+                            Doctors</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5 pt-5">
+        <!-- Welcome Section -->
+        <div class="dashboard-welcome mb-5 text-center">
+            <h1 class="mb-2">
+                <i class="fas fa-chart-line me-3"></i>
+                Welcome to Hospital Dashboard
+            </h1>
+            <p class="lead mb-0 opacity-90">Monitor your hospital statistics at a glance</p>
+        </div>
+
+        <!-- Stats Cards Row -->
+        <div class="row g-4 justify-content-center">
+            <!-- Patients Card -->
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <div class="stat-card patients h-100 p-4 text-center">
+                    <i class="fas fa-user-injured card-icon text-primary"></i>
+                    <div class="card-body">
+                        <h5 class="card-title text-muted mb-3">
+                            <i class="fas fa-users me-2 text-success"></i>Total Patients
+                        </h5>
+                        <div class="stat-number text-success">{{ patients }}</div>
+                        <p class="text-muted mt-3 mb-0">Registered Patients</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctors Card -->
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <div class="stat-card doctors h-100 p-4 text-center">
+                    <i class="fas fa-stethoscope card-icon text-info"></i>
+                    <div class="card-body">
+                        <h5 class="card-title text-muted mb-3">
+                            <i class="fas fa-user-md me-2 text-primary"></i>Total Doctors
+                        </h5>
+                        <div class="stat-number text-primary">{{ doctors }}</div>
+                        <p class="text-muted mt-3 mb-0">Active Medical Staff</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

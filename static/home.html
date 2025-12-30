@@ -1,23 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <title>Hospital Management System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Medical Theme Custom Styles */
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #5f87a3 0%, #4169a5 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Enhanced Navbar */
+        .navbar {
+            padding: 0.8rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(93, 105, 158, 0.95) !important;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        /* Nav Links Styling */
+        .nav-link {
+            color: rgba(255, 255, 255, 0.95) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            padding: 0.6rem 1.2rem !important;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Mobile Toggle */
+        .navbar-toggler {
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Responsive Container */
+        .container {
+            max-width: 1200px;
+        }
+
+        /* Content Area */
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            margin: 2rem auto;
+            padding: 3rem;
+            box-shadow: var(--medical-shadow);
+            max-width: 1000px;
+        }
+
+        .footer {
+            padding: 2rem 0;
+            margin-top: 3rem;
+            text-align: center;
+            color: #ffffff;
+        }
+    </style>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="">🏥 Hospital Management</a>
-            <div class="navbar-nav">
-                <a class="nav-link" href="">Dashboard</a>
-                <a class="nav-link" href="">Patients</a>
-                <a class="nav-link" href="">Doctors</a>
+            <a class="navbar-brand" href="">
+                <p>🏥 Hospital Management</p>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="{{url_for('create_form')}}">
+                        <i class="fas fa-user-plus me-1"></i>Create Patient
+                    </a>
+                    <a class="nav-link" href="{{url_for('patient_details')}}">
+                        <i class="fas fa-users me-1"></i>Patients
+                    </a>
+                    <a class="nav-link" href="{{url_for('doctor_details')}}">
+                        <i class="fas fa-user-md me-1"></i>Doctors
+                    </a>
+                    <a class="nav-link" href="{{url_for('dash_board')}}">
+                        Dash Board
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
-    <div class="container mt-4">
-        {% block content %}{% endblock %}
+
+    <!-- Main Content Area - Replace with your page content -->
+    <div class="container">
+        <div class="main-content">
+            <h1 class="text-center mb-4" style="color: #667eea;">Welcome to Hospital Management System</h1>
+            <p class="text-center lead text-muted">Your FastAPI & MySQL -powered hospital management solution is ready!
+            </p>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Hospital Management System. Built with FastAPI & MySQL.</p>
+        </div>
+    </footer>
 </body>
+
 </html>
